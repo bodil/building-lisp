@@ -68,6 +68,15 @@
           <h3>What To Do?</h3>
         </section>
 
+        <section data-background="m/pre-alicorn.png" data-markdown>
+### BODOL
+```clojure
+(ƒ fac
+  0 → 1
+  n → (* n (fac (- n 1))))
+```
+        </section>
+
 	  </div>
 
 	</div>
@@ -98,9 +107,16 @@ Reveal.initialize({
 	{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 	{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 	{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-	{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 	{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-	{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+	{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'plugin/prettify/prettify.js', async: true, callback: function() {
+      var i, els = document.querySelectorAll("code"), l = els.length, el;
+      for (i = 0; i < l; i++) {
+        el = els[i];
+        if (el.className !== "no-highlight")
+          el.innerHTML = prettyPrintOne(el.innerHTML, el.className);
+      }
+    } }
   ]
 });
 	</script>

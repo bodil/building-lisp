@@ -45,15 +45,15 @@
 @linkText: @azdarkblue;
 @bullet: desaturate(lighten(@text, 40%), 15%);
 
-@codeBackground: @azbg1;
+@codeBackground: fadeOut(@backgroundColour, 50%);
 @code: @azfg;
 
 @codeString: @azblue;
 @codeKeyword: @azdarkblue;
 @codeComment: @azviolet;
 @codeType: @azbeige1;
-@codeLiteral: @azvioletp4;
-@codePunctuation: @azdarkblue;
+@codeLiteral: @azviolet;
+@codePunctuation: @azblue;
 @codeDecimal: @azvioletp4;
 @codeOpenParen: @azfg;
 @codeCloseParen: @azfg;
@@ -233,22 +233,18 @@ body {
     // Code
 
     pre {
-        box-shadow: 0 4px 16px fade(@codeBackground, 60%);
         padding: 0.5em 1em;
-        border-radius: 0.3em;
-        border: 1px solid darken(@codeBackground, 10%);
-        margin: 0;
+        box-shadow: none;
     }
 
     code {
-        font-size: 28pt;
-        border: 1px solid darken(@codeBackground, 10%);
-        border-radius: 0.2em;
+        font-size: 40pt;
         letter-spacing: -0.04em;
     }
 
     pre > code {
-        font-size: inherit;
+        font-size: 32pt;
+        line-height: 36pt;
         border: none;
         letter-spacing: inherit;
     }
@@ -259,7 +255,7 @@ body {
         font-family: @codeFont;
 
         .codeColour (@colour) {
-            color: darken(@colour, 10%);
+            color: @colour;
             text-shadow: 0 1px 4px fade(@colour, 30%);
         }
 

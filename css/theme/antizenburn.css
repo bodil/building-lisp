@@ -119,92 +119,88 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 }
 .reveal pre {
-  box-shadow: 0 4px 16px rgba(212, 212, 212, 0.6);
   padding: 0.5em 1em;
-  border-radius: 0.3em;
-  border: 1px solid #bbbbbb;
-  margin: 0;
+  box-shadow: none;
 }
 .reveal code {
-  font-size: 28pt;
-  border: 1px solid #bbbbbb;
-  border-radius: 0.2em;
+  font-size: 40pt;
   letter-spacing: -0.04em;
 }
 .reveal pre > code {
-  font-size: inherit;
+  font-size: 32pt;
+  line-height: 36pt;
   border: none;
   letter-spacing: inherit;
 }
 .reveal pre,
 .reveal code {
-  background: #d4d4d4;
+  background: rgba(240, 240, 240, 0.5);
   color: #232333;
   font-family: 'Inconsolata';
 }
 .reveal pre .pln,
 .reveal code .pln {
-  color: #0e0e15;
+  color: #232333;
   text-shadow: 0 1px 4px rgba(35, 35, 51, 0.3);
 }
 .reveal pre .str,
 .reveal code .str {
-  color: #234949;
+  color: #336c6c;
   text-shadow: 0 1px 4px rgba(51, 108, 108, 0.3);
 }
 .reveal pre .kwd,
 .reveal code .kwd {
-  color: #070f25;
-  text-shadow: 0 1px 4px rgba(15, 32, 80, 0.3);
+  color: #c99f9f;
+  text-shadow: 0 1px 4px rgba(201, 159, 159, 0.3);
 }
 .reveal pre .com,
 .reveal code .com {
-  color: #634a63;
+  color: #806080;
   text-shadow: 0 1px 4px rgba(128, 96, 128, 0.3);
 }
 .reveal pre .typ,
 .reveal code .typ {
-  color: #613533;
+  color: #834744;
   text-shadow: 0 1px 4px rgba(131, 71, 68, 0.3);
 }
 .reveal pre .lit,
 .reveal code .lit {
-  color: #190819;
-  text-shadow: 0 1px 4px rgba(64, 20, 64, 0.3);
+  color: #806080;
+  text-shadow: 0 1px 4px rgba(128, 96, 128, 0.3);
 }
 .reveal pre .pun,
 .reveal code .pun {
-  color: #070f25;
-  text-shadow: 0 1px 4px rgba(15, 32, 80, 0.3);
+  color: #336c6c;
+  text-shadow: 0 1px 4px rgba(51, 108, 108, 0.3);
 }
 .reveal pre .dec,
 .reveal code .dec {
-  color: #190819;
+  color: #401440;
   text-shadow: 0 1px 4px rgba(64, 20, 64, 0.3);
 }
 .reveal pre .opn,
 .reveal code .opn {
-  color: #0e0e15;
+  color: #232333;
   text-shadow: 0 1px 4px rgba(35, 35, 51, 0.3);
 }
 .reveal pre .clo,
 .reveal code .clo {
-  color: #0e0e15;
+  color: #232333;
   text-shadow: 0 1px 4px rgba(35, 35, 51, 0.3);
 }
 .reveal pre .tag,
 .reveal code .tag {
-  color: #441311;
+  color: #6c1f1c;
   text-shadow: 0 1px 4px rgba(108, 31, 28, 0.3);
 }
 .reveal pre .atn,
 .reveal code .atn {
-  color: #153448;
+  color: #205070;
   text-shadow: 0 1px 4px rgba(32, 80, 112, 0.3);
 }
 .reveal pre .atv,
 .reveal code .atv {
-  color: #234949;
+  color: #336c6c;
   text-shadow: 0 1px 4px rgba(51, 108, 108, 0.3);
 }
 .reveal .controls a {
