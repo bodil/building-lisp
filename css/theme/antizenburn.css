@@ -5,8 +5,10 @@
 @import url('fonts/Signika/signika.css');
 
 @import url('fonts/Roboto_Slab/robotoslab.css');
+
+@import url('fonts/Celestia/celestia.css');
 body {
-  font-family: 'Roboto Slab', Impact, sans-serif;
+  font-family: 'Dijkstra';
   font-size: 36pt;
   font-weight: 200;
   letter-spacing: -0.02em;
@@ -15,6 +17,7 @@ body {
 }
 .reveal section {
   border-radius: 0.2em;
+  background: rgba(240, 240, 240, 0.85);
 }
 .reveal h1,
 .reveal h2,
@@ -24,8 +27,9 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #603a60;
-  line-height: 0.9em;
+  line-height: 1.05em;
   letter-spacing: 0.02em;
+  font-family: 'Celestia';
   text-transform: uppercase;
   text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
 }
@@ -47,7 +51,7 @@ body {
 .reveal li,
 .reveal blockquote {
   text-shadow: 1px 1px 4px rgba(35, 35, 51, 0.4);
-  line-height: 44pt;
+  line-height: 48pt;
 }
 .reveal strong {
   letter-spacing: 0.05em;
@@ -136,7 +140,7 @@ body {
 .reveal code {
   background: #d4d4d4;
   color: #232333;
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Inconsolata';
 }
 .reveal pre .pln,
 .reveal code .pln {

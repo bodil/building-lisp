@@ -2,6 +2,7 @@
 @import url('fonts/Inconsolata/inconsolata.css');
 @import url('fonts/Signika/signika.css');
 @import url('fonts/Roboto_Slab/robotoslab.css');
+@import url('fonts/Celestia/celestia.css');
 
 @backgroundColour: #f0f0f0;
 
@@ -60,8 +61,9 @@
 @codeHtmlAttribute: @azlightblue;
 @codeHtmlValue: @azblue;
 
-@standardFont: 'Roboto Slab', Impact, sans-serif;
-@codeFont: 'Inconsolata', monospace;
+@standardFont: 'Dijkstra';
+@codeFont: 'Inconsolata';
+@headerFont: 'Celestia';
 
 body {
     font-family: @standardFont;
@@ -75,6 +77,7 @@ body {
 .reveal {
     section {
         border-radius: 0.2em;
+        background: fadeout(@backgroundColour, 15%);
     }
 
     // Headers
@@ -82,9 +85,10 @@ body {
     h1, h2, h3, h4, h5, h6 {
         margin: 0 0 20px 0;
         color: @headerText;
-        line-height: 0.9em;
+        line-height: 1.05em;
         letter-spacing: 0.02em;
 
+        font-family: @headerFont;
         text-transform: uppercase;
         text-shadow: 0px 0px 6px rgba(0,0,0,0.2);
     }
@@ -138,7 +142,7 @@ body {
 
     p, li, blockquote {
         text-shadow: 1px 1px 4px fade(@text, 40%);
-        line-height: 44pt;
+        line-height: 48pt;
     }
 
     strong {

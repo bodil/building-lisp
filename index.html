@@ -4,10 +4,8 @@
   <head>
 	<meta charset="utf-8">
 
-	<title>reveal.js - The HTML Presentation Framework</title>
-
-	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-	<meta name="author" content="Hakim El Hattab">
+	<title>BODOL, or, how to accidentally build your own language</title>
+	<meta name="author" content="Bodil Stokke">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -39,11 +37,32 @@
 	  <!-- Any section element inside of this container is displayed as a slide -->
 	  <div class="slides">
 
-		<section>
+		<section data-background="m/science.png">
 		  <h1>BODOL</h1>
 		  <p>or, how to accidentally build<br>your own language</p>
-		  <p><a href="https://twitter.com/bodil">@bodil</a></p>
+		  <p style="margin-top: 1em"><a href="https://twitter.com/bodil">@bodil</a></p>
 		</section>
+
+        <section data-background="m/wonderbolts.png">
+          <h2>The Perfect Language</h2>
+          <p class="fragment">is Clojure</p>
+          <p class="fragment">is Haskell</p>
+        </section>
+
+        <section data-background="m/party-cannon.png">
+          <h2>Shen</h2>
+          <p class="fragment">s-expressions + metaprogramming</p>
+          <p class="fragment">pattern matching</p>
+          <p class="fragment">advanced type system</p>
+          <p class="fragment">logic engine</p>
+        </section>
+
+        <section data-background="m/i-dont-even.png">
+          <h2>Shen</h2>
+          <p class="fragment">weird type class syntax</p>
+          <p class="fragment">restrictive license</p>
+          <p class="fragment" style="text-decoration: underline; font-weight: bold">mutable data structures!</p>
+        </section>
 
 	  </div>
 
@@ -61,6 +80,11 @@ Reveal.initialize({
   progress: false,
   history: true,
   center: true,
+  width: 800,
+  height: 800,
+  margin: 0.05,
+  minScale: 0.2,
+  maxScale: 1.5,
 
   theme: "default",
   transition: "zoom", // default/cube/page/concave/zoom/linear/fade/none
