@@ -53,6 +53,14 @@ module.exports = function(grunt) {
 			}
 		},
 
+    less: {
+      main: {
+        files: {
+          "css/theme/raspberrymint.css": "css/theme/raspberrymint.less"
+        }
+      }
+    },
+
 		jshint: {
 			options: {
 				curly: false,
@@ -103,7 +111,11 @@ module.exports = function(grunt) {
 			theme: {
 				files: [ 'css/theme/source/*.scss', 'css/theme/template/*.scss' ],
 				tasks: 'themes'
-			}
+			},
+      less: {
+        files: ["css/theme/*.less"],
+        tasks: "less"
+      }
 		}
 
 	});
@@ -116,13 +128,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
+  grunt.loadNpmTasks( 'grunt-contrib-less' );
 	grunt.loadNpmTasks( 'grunt-zip' );
 
 	// Default task
 	grunt.registerTask( 'default', [ 'jshint', 'cssmin', 'uglify', 'qunit' ] );
 
 	// Theme task
-	grunt.registerTask( 'themes', [ 'sass' ] );
+	grunt.registerTask( 'themes', [ 'sass', 'less' ] );
 
 	// Package presentation to archive
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
