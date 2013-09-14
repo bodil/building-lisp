@@ -1,43 +1,67 @@
-@pink1: #2b151c;
-@pink2: #734043;
-@mint1: #96c0a5;
-@mint2: #c1d9c2;
-@mint3: #fafaf5;
-@text: @pink1;
-@headerText: @pink2;
-@linkText: #505950;
+@import url('fonts/Dijkstra/dijkstra.css');
+@import url('fonts/Inconsolata/inconsolata.css');
+@import url('fonts/Signika/signika.css');
+@import url('fonts/Roboto_Slab/robotoslab.css');
+
+@backgroundColour: #f0f0f0;
+
+@azfg: #232333;
+@azfg1: #9a9aaa;
+@azbg1: #d4d4d4;
+@azbg05: #c7c7c7;
+@azbg: #c0c0c0;
+@azbgp1: #b0b0b0;
+@azbgp2: #a0a0a0;
+@azbgp3: #909090;
+@azbluep1: #235c5c;
+@azblue: #336c6c;
+@azblue1: #437c7c;
+@azblue2: #538c8c;
+@azblue3: #639c9c;
+@azblue4: #73acac;
+@azlightblue: #205070;
+@azdarkblue: #0f2050;
+@azdarkblue1: #1f3060;
+@azdarkblue2: #2f4070;
+@azviolet1: #a080a0;
+@azviolet: #806080;
+@azvioletp1: #704d70;
+@azvioletp2: #603a60;
+@azvioletp3: #502750;
+@azvioletp4: #401440;
+@azbordeaux: #6c1f1c;
+@azbeigep1: #6b400c;
+@azbeige: #732f2c;
+@azbeige1: #834744;
+@azbeige2: #935f5c;
+@azbeige3: #a37774;
+@azbeige4: #b38f8c;
+@azbeige5: #c99f9f;
+@azgreen: #23733c;
+
+@text: @azfg;
+@headerText: @azvioletp2;
+@linkText: @azdarkblue;
 @bullet: desaturate(lighten(@text, 40%), 15%);
 
-@codeBackground: #fdf6e3;
-@code: #002b36;
+@codeBackground: @azbg1;
+@code: @azfg;
 
-@codeString: #2aa198;
-@codeKeyword: #b58900;
-@codeComment: #93a1a1;
-@codeType: #268bd2;
-@codeLiteral: #d33682;
-@codePunctuation: #657b83;
-@codeDecimal: #d33682;
-@codeOpenParen: #657b83;
-@codeCloseParen: #657b83;
-@codeHtmlTag: #6c71c4;
-@codeHtmlAttribute: #859900;
-@codeHtmlValue: #2aa198;
+@codeString: @azblue;
+@codeKeyword: @azdarkblue;
+@codeComment: @azviolet;
+@codeType: @azbeige1;
+@codeLiteral: @azvioletp4;
+@codePunctuation: @azdarkblue;
+@codeDecimal: @azvioletp4;
+@codeOpenParen: @azfg;
+@codeCloseParen: @azfg;
+@codeHtmlTag: @azbordeaux;
+@codeHtmlAttribute: @azlightblue;
+@codeHtmlValue: @azblue;
 
-@standardFont: 'League Gothic', Impact, sans-serif;
-@codeFont: 'Ubuntu Mono', monospace;
-
-@font-face {
-    font-family: 'League Gothic';
-    src: url('../../lib/font/league_gothic-webfont.eot');
-    src: url('../../lib/font/league_gothic-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../../lib/font/league_gothic-webfont.woff') format('woff'),
-    url('../../lib/font/league_gothic-webfont.ttf') format('truetype'),
-    url('../../lib/font/league_gothic-webfont.svg#LeagueGothicRegular') format('svg');
-
-    font-weight: normal;
-    font-style: normal;
-}
+@standardFont: 'Roboto Slab', Impact, sans-serif;
+@codeFont: 'Inconsolata', monospace;
 
 body {
     font-family: @standardFont;
@@ -45,12 +69,11 @@ body {
     font-weight: 200;
     letter-spacing: -0.02em;
     color: @text;
-    background: @mint3;
+    background: @backgroundColour;
 }
 
 .reveal {
     section {
-        background: #fff;
         border-radius: 0.2em;
     }
 
@@ -123,7 +146,7 @@ body {
     }
 
     blockquote {
-        background: darken(@mint3, 5%);
+        background: @azbg1;
     }
 
     // Links
