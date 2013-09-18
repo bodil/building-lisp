@@ -43,6 +43,19 @@
 		  <p style="margin-top: 1em"><a href="https://twitter.com/bodil">@bodil</a></p>
 		</section>
 
+        <section data-background="m/cutie-mark-crusaders.jpg">
+          <h3>Make your own Lisp</h3>
+          <p>A rite of passage.</p>
+        </section>
+
+        <section data-background="m/gawp.png">
+          <h3>But Why?</h3>
+        </section>
+
+        <section data-background="m/sonic-rainboom.jpg">
+          <h3>Because you can</h3>
+        </section>
+
         <section data-background="m/wonderbolts.png">
           <h2>The Perfect Language</h2>
           <p class="fragment">is Clojure</p>
@@ -64,17 +77,123 @@
           <p class="fragment" style="text-decoration: underline; font-weight: bold">mutable data structures!</p>
         </section>
 
+        <section data-background="m/gen-3.jpg"
+                 style="margin-bottom: 5em; margin-top: -5em">
+          <h3><em>Mutable data structures are unnatural</em></h3>
+        </section>
+
         <section data-background="m/what-to-do.png">
           <h3>What To Do?</h3>
         </section>
 
-        <section data-background="m/pre-alicorn.png" data-markdown>
+        <section data-background="m/watch-the-skies.png">
+          <h3>BODOL</h3>
+          <p class="fragment">pure</p>
+          <p class="fragment">immutable</p>
+          <p class="fragment">homoiconic</p>
+          <p class="fragment">typed</p>
+          <p class="fragment">makes HN caremad</p>
+        </section>
+
+        <section data-background="m/intermediate-alicorn.png" data-markdown>
 ### BODOL
 ```clojure
 (ƒ fac
   0 → 1
   n → (* n (fac (- n 1))))
 ```
+        </section>
+
+        <section data-background="m/alicorn.png" data-markdown>
+### BODOL
+```clojure
+(ƒ map
+  f () → ()
+  f (head . tail) →
+    (cons (f head)
+          (map f tail)))
+```
+        </section>
+
+        <section data-background="m/shot-web.png" style="margin-top: -4em; margin-bottom: 4em">
+          <h3>How do I made lisp?</h3>
+        </section>
+
+        <section data-background="m/dash-vs-jack.png">
+          <h3>Pick your language</h3>
+          <p class="fragment">as long as it's Clojure.</p>
+        </section>
+
+        <section data-background="m/haters-gonna-hate.jpg">
+          <h3>Parsers gonna parse</h3>
+        </section>
+
+        <section data-background="m/applejack.png">
+          <h3>Instaparse</h3>
+          <p>by Mark Engelberg</p>
+          <p class="fragment">parsers for the people</p>
+          <p class="fragment">just EBNF</p>
+          <p class="fragment">or parser combinators</p>
+        </section>
+
+        <section data-background="m/elements-of-harmony.jpg">
+          <h3>Primitive Types</h3>
+          <p class="fragment">strings, numbers, booleans</p>
+          <p class="fragment">symbols</p>
+          <p class="fragment">cons cells</p>
+        </section>
+
+        <section data-background="m/twitch.jpg">
+          <h3>Evaluation</h3>
+          <p class="fragment">program, environment in</p>
+          <p class="fragment">result, environment out</p>
+        </section>
+
+        <section data-background="m/hipster-pie.jpg">
+          <h3>State Monads</h3>
+          <p>gonna moan</p>
+        </section>
+
+        <section data-background="m/pinkies.jpg">
+          <h3>Lexical Scoping</h3>
+          <p class="fragment">A function's outer scope is the code around it, not where it's invoked from.</p>
+          <p class="fragment">Oh wait, functions</p>
+        </section>
+
+        <section data-background="m/pac-pie.jpg">
+          <h3>Pattern Matching</h3>
+          <p>run* that shit</p>
+        </section>
+
+        <section data-background="m/types.jpg">
+          <h3>Type System</h3>
+          <p>shout if you like Robin Milner</p>
+        </section>
+
+        <section data-background="m/pinkie-portal.jpg">
+          <p>The hardest problem in computer science:</p>
+          <h3 class="fragment">Naming</h3>
+        </section>
+
+        <section data-background="m/pinkie-portal.jpg">
+          <h3>Naming</h3>
+          <p class="fragment">steal some person's name</p>
+          <p class="fragment">not somebody still alive</p>
+          <p class="fragment">use a CS concept</p>
+          <p class="fragment">take popular lang, add "Script"</p>
+          <p class="fragment">take letter, increment</p>
+          <p class="fragment">pick your favourite pony</p>
+        </section>
+
+        <section data-background="m/pinkiecorn.png">
+          <p>Whatever you do, just don't name it after yourself.</p>
+        </section>
+
+        <section data-background="m/pinkiecorn.png">
+          <h3>Thank you!</h3>
+          <p><a href="https://twitter.com/bodil">@bodil</a></p>
+          <p><a href="https://github.com/bodil/building-lisp">github.com/bodil/building-lisp</p>
+          <p><a href="https://github.com/bodil/BODOL">github.com/bodil/BODOL</p>
         </section>
 
 	  </div>
@@ -93,8 +212,8 @@ Reveal.initialize({
   progress: false,
   history: true,
   center: true,
-  width: 800,
-  height: 800,
+  width: 700,
+  height: 700,
   margin: 0.05,
   minScale: 0.2,
   maxScale: 1.5,
