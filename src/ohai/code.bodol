@@ -1,0 +1,3 @@
+(ƒ fac 0 → 1 n → (* n (fac (- n 1))))
+
+(ƒ map f () → () f (head . tail) → (cons (f head) (map f tail)))
