@@ -2,10 +2,6 @@
 
 (map (λ n → (+ n 1)) '(1 2 3 4 5))
 
-;;; BODOL code
-
-(map (λ n → (+ n 1)) '(1 2 3 4 5))
-
 ;;; Instaparse example
 
 (def p
@@ -89,4 +85,6 @@ NUMBER = #'\\d+'
 
 (bodol.parser/parse "(ƒ double n → (+ n n))")
 (bodol.repl/eval "(ƒ double n → (+ n n))")
+(bodol.repl/eval "((ƒ double n → (+ n n)) 2)")
 (-> (parser/parse "(ƒ double n → (+ n n))") type-check result-str)
+(-> (parser/parse "(ƒ double m n → ((+ m m) (+ n n)))") type-check result-str)
