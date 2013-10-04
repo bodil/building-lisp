@@ -1,8 +1,3 @@
-;;; Talk notes
-
-;; Clojure: lispy, elegant, powerful, hammock time
-;; Haskell: pure, typed, warm fuzzy things
-
 ;;; BODOL code
 
 (map (λ n → (+ n 1)) '(1 2 3 4 5))
@@ -12,11 +7,18 @@
 (def p
   (insta/parser "
 
-<EXPR> = SEXP | NUMBER
-<SEXP> = <'('> ADD | NEG <')'>
-ADD = <'add'> SPACE NUMBER SPACE NUMBER
-NEG = <'neg'> SPACE NUMBER
-<NUMBER> = #'\\d+'
+<SEXP> = <'('> NUMBER (SPACE NUMBER)* <')'>
+NUMBER = #'\\d+'
+<SPACE> = <#'\\s+'>
+
+"))
+
+(def p
+  (insta/parser "
+
+<SEXP> = NUMBER | SYMBOL | <'('> SEXP (SPACE SEXP)* <')'>
+SYMBOL = #'\\w+'
+NUMBER = #'\\d+'
 <SPACE> = <#'\\s+'>
 
 "))
@@ -36,9 +38,17 @@ NEG = <'neg'> SPACE NUMBER
 
 (def-m :foo 1300)
 
+((def-m :foo 1300) {})
+
 (defn add-m [a b]
   (fn [env]
     [(+ (get env a) (get env b)) env]))
+
+((add-m :a :b) {:a 1300 :b 37})
+
+[(def-m :foo 1300)
+    (def-m :bar 37)
+    (add-m :foo :bar)]
 
 (defn program []
   (monad/reduce-state
@@ -58,21 +68,21 @@ NEG = <'neg'> SPACE NUMBER
 
 ;;; Pattern matching
 
-(l/run 1 [q a b]
-  (l/== q [a b])
-  (l/== q [0 1]))
+(run 1 [a b]
+  (fresh [q]
+    (== q [0 0])   ; signature to match
+    (== q [0 1]))) ; invoked arguments
 
 ;;; Type inference
 
-(l/run 1 [succ]
-  (l/fresh [a b +]
-    (l/== succ [:fun a b])
-    (l/== + [:fun a b])
-    (l/== + [:fun :number :number])))
+(run 1 [succ]
+  (fresh [a b +]
+    (== succ [:fun a b])
+    (== + [:fun a :number b])
+    (== + [:fun :number :number :number])))
 
-;;; Hindley-Milner
+;;; Type checker
 
-;; Run factorial. Returns int.
-
-;; Run pair thing. Throws type error.
-;; Change bool to number. Type checks.
+(bodol.parser/parse "(ƒ double n → (+ n n))")
+(bodol.repl/eval "(ƒ double n → (+ n n))")
+(-> (parser/parse "(ƒ double n → (+ n n))") type-check result-str)

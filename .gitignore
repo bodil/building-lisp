@@ -6,3 +6,4 @@ node_modules/
 .sass-cache
 .nrepl-port
 target
+/.lein-failures

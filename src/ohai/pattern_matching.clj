@@ -1,5 +1,6 @@
 (ns ohai.pattern-matching
-  (:require [clojure.core.logic :as l]))
+  (:refer-clojure :exclude [==])
+  (:require [clojure.core.logic :as l :refer [run fresh ==]]))
 
 ;; (ƒ i-like-zeroes
 ;;   0 0 -> "double zeroes!"
