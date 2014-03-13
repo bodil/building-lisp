@@ -1,282 +1,247 @@
-<!doctype html>
-
-<!-- Copyright 2013 Bodil Stokke <bodil@bodil.org>
-   -
-   - This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-
+<!DOCTYPE html>
 <html lang="en">
-
   <head>
-	<meta charset="utf-8">
-
-	<title>Building Your Own Lisp For Great Justice</title>
-	<meta name="author" content="Bodil Stokke">
-
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<link rel="stylesheet" href="css/reveal.min.css">
-	<link rel="stylesheet" href="css/theme/antizenburn.css">
-
-	<!-- For syntax highlighting -->
-	<link rel="stylesheet" href="lib/css/zenburn.css">
-
-	<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-	<script>
-  document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-	</script>
-
-    <script src="http://localhost:35729/livereload.js"></script>
-
-	<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Building Your Own Lisp For Great Justice</title>
+    <meta name="author" content="Bodil Stokke">
+    <meta name="viewport" content="width=device-width">
+    <style type="text/css">
+body { visibility: hidden; background: black; }
+    </style>
+    <script type="text/javascript">
+  var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-332358-13']); _gaq.push(['_setDomainName', 'bodil.org']); _gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+    </script>
   </head>
-
   <body>
 
-	<div class="reveal">
+    <div id="slides">
 
-	  <!-- Any section element inside of this container is displayed as a slide -->
-	  <div class="slides">
+      <section data-background="m/science.png">
+        <!-- <h1>BODOL</h1> -->
+        <!-- <p>or, how to accidentally build<br>your own language</p> -->
+        <h4>Building Your Own</h4>
+        <h1>Lisp</h1>
+        <h4>For Great Justice</h4>
+        <p style="margin-top: 1em"><a href="https://twitter.com/bodil">@bodil</a></p>
+      </section>
 
-		<section data-background="m/science.png">
-		  <!-- <h1>BODOL</h1> -->
-		  <!-- <p>or, how to accidentally build<br>your own language</p> -->
-          <h4>Building Your Own</h4>
-          <h1>Lisp</h1>
-          <h4>For Great Justice</h4>
-		  <p style="margin-top: 1em"><a href="https://twitter.com/bodil">@bodil</a></p>
-		</section>
+      <section data-background="m/cutie-mark-crusaders.jpg">
+        <h3>Make your own Lisp</h3>
+        <p>A rite of passage.</p>
+      </section>
 
-        <section data-background="m/cutie-mark-crusaders.jpg">
-          <h3>Make your own Lisp</h3>
-          <p>A rite of passage.</p>
-        </section>
+      <!-- <section data-background="m/gawp.png"> -->
+      <!--   <h3>But Why?</h3> -->
+      <!-- </section> -->
 
-        <section data-background="m/gawp.png">
-          <h3>But Why?</h3>
-        </section>
+      <!-- <section data-background="m/sonic-rainboom.jpg"> -->
+      <!--   <h3>Because you can</h3> -->
+      <!-- </section> -->
 
-        <section data-background="m/sonic-rainboom.jpg">
-          <h3>Because you can</h3>
-        </section>
+      <section data-background="m/wonderbolts.png">
+        <h2>The Perfect Language</h2>
+        <p class="fragment">is Clojure</p>
+        <p class="fragment">is Haskell</p>
+      </section>
 
-        <!-- <section data-background="m/wonderbolts.png"> -->
-        <!--   <h2>The Perfect Language</h2> -->
-        <!--   <p class="fragment">is Clojure</p> -->
-        <!--   <p class="fragment">is Haskell</p> -->
-        <!-- </section> -->
+      <!-- <section data-background="m/party-cannon.png"> -->
+      <!--   <h2>Shen</h2> -->
+      <!--   <p class="fragment">s-expressions + metaprogramming</p> -->
+      <!--   <p class="fragment">pattern matching</p> -->
+      <!--   <p class="fragment">advanced type system</p> -->
+      <!--   <p class="fragment">logic engine</p> -->
+      <!-- </section> -->
 
-        <!-- <section data-background="m/party-cannon.png"> -->
-        <!--   <h2>Shen</h2> -->
-        <!--   <p class="fragment">s-expressions + metaprogramming</p> -->
-        <!--   <p class="fragment">pattern matching</p> -->
-        <!--   <p class="fragment">advanced type system</p> -->
-        <!--   <p class="fragment">logic engine</p> -->
-        <!-- </section> -->
+      <!-- <section data-background="m/i-dont-even.png"> -->
+      <!--   <h2>Shen</h2> -->
+      <!--   <p class="fragment">weird type class syntax</p> -->
+      <!--   <p class="fragment">restrictive license</p> -->
+      <!--   <p class="fragment" style="text-decoration: underline; font-weight: bold">mutable data structures!</p> -->
+      <!-- </section> -->
 
-        <!-- <section data-background="m/i-dont-even.png"> -->
-        <!--   <h2>Shen</h2> -->
-        <!--   <p class="fragment">weird type class syntax</p> -->
-        <!--   <p class="fragment">restrictive license</p> -->
-        <!--   <p class="fragment" style="text-decoration: underline; font-weight: bold">mutable data structures!</p> -->
-        <!-- </section> -->
+      <!-- <section data-background="m/gen-3.jpg" -->
+      <!--          style="margin-bottom: 5em; margin-top: -5em"> -->
+      <!--   <h3><em>Mutable data structures are unnatural</em></h3> -->
+      <!-- </section> -->
 
-        <!-- <section data-background="m/gen-3.jpg" -->
-        <!--          style="margin-bottom: 5em; margin-top: -5em"> -->
-        <!--   <h3><em>Mutable data structures are unnatural</em></h3> -->
-        <!-- </section> -->
+      <!-- <section data-background="m/what-to-do.png"> -->
+      <!--   <h3>What To Do?</h3> -->
+      <!-- </section> -->
 
-        <!-- <section data-background="m/what-to-do.png"> -->
-        <!--   <h3>What To Do?</h3> -->
-        <!-- </section> -->
+      <section data-background="m/watch-the-skies.png">
+        <h3>BODOL</h3>
+        <p class="fragment">pure</p>
+        <p class="fragment">immutable</p>
+        <p class="fragment">homoiconic</p>
+        <p class="fragment">typed</p>
+        <p class="fragment">makes HN caremad</p>
+      </section>
 
-        <section data-background="m/watch-the-skies.png">
-          <h3>BODOL</h3>
-          <p class="fragment">pure</p>
-          <p class="fragment">immutable</p>
-          <p class="fragment">homoiconic</p>
-          <p class="fragment">typed</p>
-          <p class="fragment">makes HN caremad</p>
-        </section>
-
-        <section data-background="m/intermediate-alicorn.png" data-markdown>
-### BODOL
-```clojure
-(ƒ fac
+      <section data-background="m/intermediate-alicorn.png">
+        <h2>BODOL</h2>
+        <pre class="clojure">(ƒ fac
   0 → 1
-  n → (* n (fac (- n 1))))
-```
-        </section>
+  n → (* n (fac (- n 1))))</pre>
+      </section>
 
-        <section data-background="m/alicorn.png" data-markdown>
-### BODOL
-```clojure
-(ƒ map
+      <section data-background="m/alicorn.png" data-markdown>
+        <h2>BODOL</h2>
+        <pre class="clojure">(ƒ map
   f () → ()
   f (head . tail) →
     (cons (f head)
-          (map f tail)))
-```
-        </section>
+          (map f tail)))</pre>
+      </section>
 
-        <section data-background="m/shot-web.png" style="margin-top: -4em; margin-bottom: 4em">
-          <h3>How do I made lisp?</h3>
-        </section>
+      <section data-background="m/shot-web.png">
+        <h3>How do I made lisp?</h3>
+      </section>
 
-        <section data-background="m/dash-vs-jack.png">
-          <h3>Pick your language</h3>
-          <p class="fragment">as long as it's Clojure.</p>
-        </section>
+      <section data-background="m/dash-vs-jack.png">
+        <h3>Pick your language</h3>
+        <p class="fragment">as long as it's Clojure.</p>
+      </section>
 
-        <section data-background="m/haters-gonna-hate.jpg">
-          <h3>Parsers gonna parse</h3>
-        </section>
+      <section data-background="m/haters-gonna-hate.jpg">
+        <h3>Parsers gonna parse</h3>
+      </section>
 
-        <section data-background="m/applejack.png">
-          <h3>Instaparse</h3>
-          <p>by Mark Engelberg</p>
-          <p class="fragment">parsers for the people</p>
-          <p class="fragment">just EBNF</p>
-          <p class="fragment">or parser combinators</p>
-        </section>
+      <section data-background="m/applejack.png">
+        <h3>Instaparse</h3>
+        <p>by Mark Engelberg</p>
+        <p class="fragment">parsers for the people</p>
+        <p class="fragment">just EBNF</p>
+        <p class="fragment">or parser combinators</p>
+      </section>
 
-        <section data-background="m/la-la-la.gif">
-          <h3>Primitive Types</h3>
-          <p class="fragment">strings, numbers, booleans</p>
-          <p class="fragment">symbols</p>
-          <p class="fragment">cons cells</p>
-        </section>
+      <section data-background="m/applejack.png" data-editor="text/x-clojure">
+        (ns ohai.instaparse
+          (:require [instaparse.core :as insta]))
+      </section>
 
-        <section data-background="m/elements-of-harmony.jpg">
-          <h3>Elementary Functions</h3>
-          <p class="fragment">cons, car, cdr</p>
-          <p class="fragment">cond, eq, atom</p>
-          <p class="fragment">lambda, label, quote</p>
-        </section>
+      <section data-background="m/la-la-la.gif">
+        <h3>Primitive Types</h3>
+        <p class="fragment">strings, numbers, booleans</p>
+        <p class="fragment">symbols</p>
+        <p class="fragment">cons cells</p>
+      </section>
 
-        <section data-background="m/twitch.jpg">
-          <h3>Evaluation</h3>
-          <p class="fragment">primitive types evaluate to...</p>
-          <p class="fragment">themselves</p>
-          <p class="fragment">symbols evaluate to...</p>
-          <p class="fragment">their bound values</p>
-          <p class="fragment">functions evaluate to...</p>
-          <p class="fragment">their results</p>
-        </section>
+      <section data-background="m/elements-of-harmony.jpg">
+        <h3>Elementary Functions</h3>
+        <p class="fragment">cons, car, cdr</p>
+        <p class="fragment">cond, eq, atom</p>
+        <p class="fragment">lambda, label, quote</p>
+      </section>
 
-        <section data-background="m/dash-victorious.png">
-          <h3>eval()</h3>
-          <p class="fragment">program, environment in</p>
-          <p class="fragment">result, environment out</p>
-        </section>
+      <section data-background="m/twitch.jpg">
+        <h3>Evaluation</h3>
+        <p class="fragment">primitive types evaluate to...</p>
+        <p class="fragment">themselves</p>
+        <p class="fragment">symbols evaluate to...</p>
+        <p class="fragment">their bound values</p>
+        <p class="fragment">functions evaluate to...</p>
+        <p class="fragment">their results</p>
+      </section>
 
-        <section data-background="m/hipster-pie.jpg">
-          <h3>State Monads</h3>
-          <p>gonna moan</p>
-        </section>
+      <section data-background="m/dash-victorious.png">
+        <h3>eval()</h3>
+        <p class="fragment">program, environment in</p>
+        <p class="fragment">result, environment out</p>
+      </section>
 
-        <section data-background="m/pinkies.jpg">
-          <h3>Lexical Scoping</h3>
-          <p class="fragment">A function's outer scope is the code around it, not where it's invoked from.</p>
-        </section>
+      <section data-background="m/hipster-pie.jpg">
+        <h3>State Monads</h3>
+        <p>gonna moan</p>
+      </section>
 
-        <section data-background="m/pac-pie.jpg">
-          <h3>Pattern Matching</h3>
-          <p>run* that shit</p>
-        </section>
+      <section data-background="m/hipster-pie.jpg" data-editor="text/x-clojure">
+        (ns ohai.monads
+          (:require [bodol.monad :as monad]))
+      </section>
 
-        <section data-background="m/princess-twilight.png">
-          <h3>This is your lisp on pattern matching</h3>
-          <p class="fragment">cons, <strike>car, cdr</strike></p>
-          <p class="fragment"><strike>cond, eq, atom</strike></p>
-          <p class="fragment">lambda, label, quote</p>
-        </section>
+      <section data-background="m/pinkies.jpg">
+        <h3>Lexical Scoping</h3>
+        <p class="fragment">A function's outer scope is the code around it, not where it's invoked from.</p>
+      </section>
 
-        <section data-background="m/types.jpg">
-          <h3>Type System</h3>
-          <p>shout if you like Robin Milner</p>
-        </section>
+      <section data-background="m/pac-pie.jpg">
+        <h3>Pattern Matching</h3>
+        <p>run* that shit</p>
+      </section>
 
-        <section data-background="m/pinkie-portal.jpg">
-          <p>The hardest problem in computer science:</p>
-          <h3 class="fragment">Naming</h3>
-        </section>
+      <section data-background="m/hipster-pie.jpg" data-editor="text/x-clojure">
+        (ns ohai.pattern-matching
+          (:refer-clojure :exclude [==])
+          (:require [clojure.core.logic :as l :refer [run fresh ==]]))
 
-        <section data-background="m/pinkie-portal.jpg">
-          <h3>Naming</h3>
-          <p class="fragment">steal some person's name</p>
-          <p class="fragment">not somebody still alive</p>
-          <p class="fragment">use a CS concept</p>
-          <p class="fragment">take popular lang, add "Script"</p>
-          <p class="fragment">take letter, increment</p>
-          <p class="fragment">pick your favourite pony</p>
-        </section>
+        ;; (ƒ i-like-zeroes
+        ;;   0 0 -> "double zeroes!"
+        ;;   0 a -> "zero car"
+        ;;   a 0 -> "zero cdr"
+        ;;   a b -> "no zeroes"
+      </section>
 
-        <section data-background="m/pinkiecorn.png">
-          <p>Whatever you do, just don't name it after yourself.</p>
-        </section>
+      <section data-background="m/princess-twilight.png">
+        <h3>This is your lisp on pattern matching</h3>
+        <p class="fragment">cons, <strike>car, cdr</strike></p>
+        <p class="fragment"><strike>cond, eq, atom</strike></p>
+        <p class="fragment">lambda, label, quote</p>
+      </section>
 
-        <section data-background="m/camo-dash.png">
-          <h3>GO FORTH</h3>
-          <p>the world needs moar toy lisps</p>
-        </section>
+      <section data-background="m/types.jpg">
+        <h3>Type System</h3>
+        <p>shout if you like Robin Milner</p>
+      </section>
 
-        <section data-background="m/brohoof.png">
-          <h3>Thank you!</h3>
-          <p><a href="https://twitter.com/bodil">@bodil</a></p>
-          <p><a href="https://github.com/bodil/building-lisp">github.com/bodil/building-lisp</p>
-          <p><a href="https://github.com/bodil/BODOL">github.com/bodil/BODOL</p>
-        </section>
+      <section data-background="m/types.jpg" data-editor="text/x-clojure">
+        (ns ohai.type-inference
+          (:refer-clojure :exclude [==])
+          (:require [clojure.core.logic :as l :refer [run fresh ==]]))
 
-	  </div>
+        ;; (ƒ succ
+        ;;   a → (+ a 1))
+      </section>
 
-	</div>
+      <section data-background="m/pinkie-portal.jpg">
+        <p>The hardest problem in computer science:</p>
+        <h3 class="fragment">Naming</h3>
+      </section>
 
-	<script src="lib/js/head.min.js"></script>
-	<script src="js/reveal.min.js"></script>
+      <section data-background="m/pinkie-portal.jpg">
+        <h3>Naming</h3>
+        <p class="fragment">steal some person's name</p>
+        <p class="fragment">not somebody still alive</p>
+        <p class="fragment">use a CS concept</p>
+        <p class="fragment">take popular lang, add "Script"</p>
+        <p class="fragment">take letter, increment</p>
+        <p class="fragment">pick your favourite pony</p>
+      </section>
 
-	<script>
+      <section data-background="m/pinkiecorn.png">
+        <p>Whatever you do, just don't name it after yourself.</p>
+      </section>
 
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-  controls: false,
-  progress: false,
-  history: true,
-  center: true,
-  width: 700,
-  height: 700,
-  margin: 0.05,
-  minScale: 0.2,
-  maxScale: 1.5,
+      <section data-background="m/camo-dash.png">
+        <h3>GO FORTH</h3>
+        <p>the world needs moar toy lisps</p>
+      </section>
 
-  theme: "default",
-  transition: "zoom", // default/cube/page/concave/zoom/linear/fade/none
+      <section data-background="m/brohoof.png">
+        <h3>Thank you!</h3>
+        <p><a href="https://twitter.com/bodil">@bodil</a></p>
+        <p><a href="https://github.com/bodil/building-lisp">github.com/bodil/building-lisp</p>
+        <p><a href="https://github.com/bodil/BODOL">github.com/bodil/BODOL</p>
+      </section>
 
-  // Optional libraries used to extend on reveal.js
-  dependencies: [
-	{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-	{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-	{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-	{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-	{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-    { src: 'plugin/prettify/prettify.js', async: true, callback: function() {
-      var i, els = document.querySelectorAll("code"), l = els.length, el;
-      for (i = 0; i < l; i++) {
-        el = els[i];
-        if (el.className !== "no-highlight")
-          el.innerHTML = prettyPrintOne(el.innerHTML, el.className);
-      }
-    } }
-  ]
-});
-	</script>
+    </div>
 
+    <script type="text/javascript" src="build/slide.js"></script>
+    <script async src="https://www.dogeapi.com/widget/dogeapi.js" type="text/javascript"></script>
   </body>
 </html>

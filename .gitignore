@@ -1,9 +1,7 @@
-.DS_Store
-.svn
-log/*.log
-tmp/**
-node_modules/
-.sass-cache
+*~
+#*
+/node_modules
 .nrepl-port
-target
-/.lein-failures
+/build
+npm-debug.log
+/repl-server/clojure/target

@@ -1,6 +1,0 @@
-#!/bin/sh
-if [ "$TERM" = "dumb" -o ! -x "`which rlwrap`"  ] ; then
-    lein trampoline run
-else
-    rlwrap -r -m -q '\"' -b "(){}[],^%3@\";:'" -ppurple lein trampoline run
-fi
