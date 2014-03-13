@@ -2,22 +2,34 @@
 
 var events = require("./lib/events");
 var mousetrap = require("./lib/mousetrap");
-
-function toArray(indexable) {
-  const out = [], l = indexable.length;
-  for (let i = 0; i < l; i++) {
-    out.push(indexable[i]);
-  }
-  return out;
-}
+var seq = require("./lib/seq");
 
 function Deck(container, deckModules) {
 
-  const slides = toArray(container.querySelectorAll("section"));
+  const slides = seq.toArray(container.querySelectorAll("section"));
   this.currentSlide = null;
+  this.currentItem = null;
+
+  const stream = seq.flatMap((slide) => {
+    return [slide].concat(seq.toArray(slide.querySelectorAll(".fragment")));
+  }, slides);
+  console.log(stream);
+
+  function isFragment(node) {
+    return node.classList.contains("fragment");
+  }
+
+  function fragmentSlide(node) {
+    if (isFragment(node)) {
+      while (node.nodeName !== "SECTION") {
+        node = node.parentNode;
+      }
+    }
+    return node;
+  }
 
   slides.forEach((slide) => {
-    const children = toArray(slide.childNodes);
+    const children = seq.toArray(slide.childNodes);
     const container = document.createElement("div");
     container.classList.add("slideContainer");
     children.forEach((child) => {
@@ -27,9 +39,9 @@ function Deck(container, deckModules) {
     slide.appendChild(container);
   });
 
-  function slideIndex(slide) {
-    return slides.indexOf(slide);
-  }
+  // function slideIndex(slide) {
+  //   return slides.indexOf(slide);
+  // }
 
   this.deactivateSlide = (slide) => {
     if (slide.classList.contains("current")) {
@@ -44,26 +56,57 @@ function Deck(container, deckModules) {
       this.cleanupModules(slide);
       slide.classList.remove("out");
     }
-    if (this.currentSlide !== null) this.deactivateSlide(slides[this.currentSlide]);
-    this.currentSlide = slideIndex(slide);
+    if (this.currentSlide !== null) this.deactivateSlide(this.currentSlide);
+    this.currentSlide = slide;
 
     this.activateModules(slide);
 
     slide.classList.add("current");
     slide.classList.add("in");
-    window.location.hash = "" + this.currentSlide;
   }
 
-  this.nextSlide = () => {
-    let nextSlide = this.currentSlide !== null ? this.currentSlide + 1 : 0;
-    if (nextSlide >= slides.length) nextSlide = slides.length - 1;
-    if (nextSlide !== this.currentSlide) this.activateSlide(slides[nextSlide]);
+  function applyFragment(from, to, f) {
+    var node;
+    for (let i = from; i <= to; i++) {
+      node = stream[i];
+      if (isFragment(node)) {
+        f(node);
+      }
+    }
   }
 
-  this.previousSlide = () => {
-    let prevSlide = this.currentSlide !== null ? this.currentSlide - 1 : 0;
-    if (prevSlide < 0) prevSlide = 0;
-    if (prevSlide !== this.currentSlide) this.activateSlide(slides[prevSlide]);
+  this.activateItem = (item) => {
+    let itemSlide = fragmentSlide(stream[item]);
+    if (this.currentItem !== null) {
+      if (this.currentItem < item) {
+        applyFragment(this.currentItem, item,
+                      (node) => node.classList.add("active"));
+      } else if (this.currentItem > item) {
+        applyFragment(item + 1, this.currentItem,
+                      (node) => node.classList.remove("active"));
+      }
+    } else {
+      applyFragment(0, item, (node) => node.classList.add("active"));
+      applyFragment(item + 1, stream.length - 1,
+                    (node) => node.classList.remove("active"));
+    }
+    this.currentItem = item;
+    if (this.currentSlide !== itemSlide) {
+      this.activateSlide(itemSlide);
+    }
+    window.location.hash = "" + this.currentItem;
+  };
+
+  this.nextItem = () => {
+    let nextItem = this.currentItem !== null ? this.currentItem + 1 : 0;
+    if (nextItem >= stream.length) nextItem = stream.length - 1;
+    if (nextItem !== this.currentItem) this.activateItem(nextItem);
+  }
+
+  this.previousItem = () => {
+    let prevItem = this.currentItem !== null ? this.currentItem - 1 : 0;
+    if (prevItem < 0) prevItem = 0;
+    if (prevItem !== this.currentItem) this.activateItem(prevItem);
   }
 
   this.initModules = (slide) => {
@@ -111,15 +154,15 @@ function Deck(container, deckModules) {
     mousetrap.bind(binding, callback.bind(this));
   };
 
-  this.bind(["pageup", "left"], this.previousSlide);
-  this.bind(["pagedown", "space", "right"], this.nextSlide);
+  this.bind(["pageup", "left"], this.previousItem);
+  this.bind(["pagedown", "space", "right"], this.nextItem);
 
   setTimeout(() => {
     let match = /^#(\d+)$/.exec(window.location.hash);
     if (match) {
-      this.activateSlide(slides[parseInt(match[1], 10)]);
+      this.activateItem(parseInt(match[1], 10));
     } else {
-      this.nextSlide();
+      this.nextItem();
     }
   }, 1);
 

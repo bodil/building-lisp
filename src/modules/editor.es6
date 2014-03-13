@@ -25,7 +25,7 @@ var events = require("../lib/events");
 var text = require("../lib/text");
 var emacs = require("./editor/emacs");
 var Spinner = require("spin.js");
-var _ = require("underscore");
+var seq = require("../lib/seq");
 
 function factory(languages) {
 
@@ -245,7 +245,7 @@ function factory(languages) {
                   require("./editor/mousetrap.json"),
                   require("./editor/rxjs.json") ]
         });
-        let ternKeymap = _.extend({}, keymap);
+        let ternKeymap = seq.merge(keymap);
         ternKeymap["Ctrl-\\"] = (cm) => tern.complete(cm);
         ternKeymap["Ctrl-I"] = (cm) => tern.showType(cm);
         ternKeymap["Alt-."] = (cm) => tern.jumpToDef(cm);

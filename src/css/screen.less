@@ -179,6 +179,29 @@ a {
         transform: scale(0.75);
     }
 
+    .fragment {
+        opacity: 0;
+        -webkit-transform: scale(1.25);
+        -webkit-filter: grayscale(100%);
+        -webkit-transition: -webkit-filter 0.3s ease, -webkit-transform 0.3s ease, opacity 0.3s ease;
+        -moz-transform: scale(1.25);
+        -moz-filter: grayscale(100%);
+        -moz-transition: -moz-filter 0.3s ease, -moz-transform 0.3s ease, opacity 0.3s ease;
+        transform: scale(1.25);
+        filter: grayscale(100%);
+        transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+
+        &.active {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -webkit-filter: grayscale(0);
+            -moz-transform: scale(1);
+            -moz-filter: grayscale(0);
+            transform: scale(1);
+            filter: grayscale(0);
+        }
+    }
+
     &.editor {
         left: 0;
         top: 0;
