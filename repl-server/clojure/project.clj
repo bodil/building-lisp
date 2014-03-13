@@ -7,7 +7,8 @@
                  [http-kit "2.1.17"]
                  [cheshire "5.3.1"]
                  [instaparse "1.2.16"]
-                 [org.clojure/core.logic "0.8.7"]]
+                 [org.clojure/core.logic "0.8.7"]
+                 [org.clojure/core.match "0.2.1"]]
   :jvm-opts ["-Dfile.encoding=utf-8"
              "-Djava.security.policy=java.policy"]
   :main repl.core)

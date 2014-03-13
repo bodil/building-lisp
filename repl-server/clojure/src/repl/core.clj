@@ -3,7 +3,12 @@
                                               on-receive on-close]]
             [cheshire.core :refer [generate-string parse-string]]
             [cheshire.generate :refer [add-encoder]]
-            [clojure.edn :as edn])
+            [clojure.edn :as edn]
+            [bodol.scope]
+            [bodol.parser]
+            [bodol.eval]
+            [bodol.types]
+            [bodol.error])
   (:import [com.fasterxml.jackson.core JsonParseException]))
 
 (add-encoder clojure.lang.Namespace
@@ -26,7 +31,6 @@
        (catch Exception e {:error (.getMessage (.getCause e))})))
 
 (defn eval-stream [ns s]
-  (println "hai eval-stream")
   (loop [form (read-next s)
          ns ns
          results []]
@@ -42,6 +46,34 @@
                    (conj results result)))))
       results)))
 
+(defn bodol-eval-form [scope form]
+  (let [[result r-scope] ((bodol.eval/eval form) scope)]
+    [{:result (bodol.types/pr-value result)} r-scope]))
+
+(defn line-at [s pos]
+  (reduce
+   (fn [acc next]
+     (if (= \newline next) (inc acc) acc))
+   0 (take pos s)))
+
+(defn eval-bodol [s]
+  (loop [forms (bodol.parser/parse (str s "\n"))
+         scope (bodol.scope/scope)
+         results []]
+    (if (seq forms)
+      (let [form (first forms)
+            _ (println "next in stream:" form)
+            [result r-scope] (bodol-eval-form scope form)
+            _ (println "result:" result)
+            pos (bodol.types/-pos form)
+            result (assoc result :line (line-at s (inc (second (:span pos)))))]
+        (if (result :error)
+          (conj results result)
+          (recur (rest forms)
+                 r-scope
+                 (conj results result))))
+      results)))
+
 (defn process-request [ns channel data]
   (println "received data on socket: " data)
   (try
@@ -49,16 +81,27 @@
           code (data "eval")
           type (data "type")
           id (data "messageId")]
-      (if (and code (= "text/x-clojure" type))
-        ;; future
-        (let [result (eval-stream (create-ns 'user) (stream code))
-              _ (println "eval result:" result)
-              out (generate-string {:code code :result result
-                                    :messageId id})]
-          (println "sending:" out)
-          (send! channel out))
-        (send! channel (generate-string {:error "No Clojure code to evaluate."
-                                         :messageId id}))))
+      (cond
+
+       (and code (= "text/x-clojure" type))
+       (let [result (eval-stream (create-ns 'user) (stream code))
+             _ (println "eval result:" result)
+             out (generate-string {:code code :result result
+                                   :messageId id})]
+         (println "sending:" out)
+         (send! channel out))
+
+       (and code (= "text/x-bodol" type))
+       (let [result (eval-bodol code)
+             _ (println "eval result:" result)
+             out (generate-string {:code code :result result
+                                   :messageId id})]
+         (println "sending:" out)
+         (send! channel out))
+
+       :else
+       (send! channel (generate-string {:error "No Clojure code to evaluate."
+                                        :messageId id}))))
     (catch JsonParseException e
       (send! channel (generate-string {:error "Bad JSON, try again."})))))
 
