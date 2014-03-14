@@ -5,6 +5,32 @@ Here is a slide deck for a talk I gave. Much code. Very ponies. Wow.
 
 Notes for code slides [are here](notes.clj).
 
+Running
+-------
+
+Slides can be run directly on the internets at
+[http://bodil.org/building-lisp](http://bodil.org/building-lisp). The
+REPL slides will only work if you have a REPL server running locally,
+though.
+
+To launch the REPL server, you'll need to install
+[https://github.com/technomancy/leiningen](Leiningen), then:
+
+```sh
+$ cd repl-server/clojure
+$ lein run
+```
+
+To setup and run the local HTTP server for the slides:
+
+```sh
+$ npm install
+$ npm start
+```
+
+Keybindings
+-----------
+
 Navigate through slides using `PgUp` and `PgDn`.
 
 Editor cheat sheet:
