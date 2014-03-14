@@ -1,14 +1,16 @@
-What Every Hipster Should Know About Functional Reactive Programming
-====================================================================
+Building Your Own Lisp For Great Justice
+========================================
 
-It is a slide deck. Much code.
+Here is a slide deck for a talk I gave. Much code. Very ponies. Wow.
+
+Notes for code slides [are here](notes.clj).
 
 Navigate through slides using `PgUp` and `PgDn`.
 
 Editor cheat sheet:
 
 * `Ctrl-S` evaluates the whole buffer.
-* `Ctrl-D` evaluates the top level expression at cursor point.
+* `Ctrl-D` evaluates the top level expression at cursor point. (currently unimplemented)
 * `Ctrl-R` reloads the HTML document without evaluating the buffer.
 * `Ctrl-,` toggles commenting of the current line or selection.
 * `Ctrl-'` selects the token at point.
