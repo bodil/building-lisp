@@ -20,4 +20,4 @@
 .cm-s-moondoge span.cm-error {color: #f00;}
 
 .cm-s-moondoge .CodeMirror-activeline-background {background: #e8f2ff !important;}
-.cm-s-moondoge .CodeMirror-matchingbracket {outline:1px solid grey; color:black !important;}
+.cm-s-moondoge .CodeMirror-matchingbracket {background-color: #ccc; color:black !important;}

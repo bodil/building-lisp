@@ -83,8 +83,8 @@ NUMBER = #'\\d+'
 
 ;;; Type checker
 
-(bodol.parser/parse "(ƒ double n → (+ n n))")
-(bodol.repl/eval "(ƒ double n → (+ n n))")
-(bodol.repl/eval "((ƒ double n → (+ n n)) 2)")
-(-> (parser/parse "(ƒ double n → (+ n n))") type-check result-str)
-(-> (parser/parse "(ƒ double m n → ((+ m m) (+ n n)))") type-check result-str)
+(parser/parse "(ƒ double n → (+ n n))")
+(repl/eval "((ƒ double n → (+ n n)) 2)")
+
+(check/check (parser/parse "(ƒ double n → (+ n n))"))
+(check/check (parser/parse "(ƒ double m n → (+ (+ m m) (+ n n)))"))

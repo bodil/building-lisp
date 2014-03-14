@@ -36,13 +36,10 @@ body { visibility: hidden; background: black; }
         <p>A rite of passage.</p>
       </section>
 
-      <!-- <section data-background="m/gawp.png"> -->
-      <!--   <h3>But Why?</h3> -->
-      <!-- </section> -->
-
-      <!-- <section data-background="m/sonic-rainboom.jpg"> -->
-      <!--   <h3>Because you can</h3> -->
-      <!-- </section> -->
+      <section data-background="m/hipster-pinkie.jpg">
+        <h3>I use X</h3>
+        <p style="margin: 0 -4em">You probably haven't heard of it.</p>
+      </section>
 
       <section data-background="m/wonderbolts.png">
         <h2>The Perfect Language</h2>
@@ -158,13 +155,27 @@ body { visibility: hidden; background: black; }
       </section>
 
       <section data-background="m/hipster-pie.jpg" data-editor="text/x-clojure">
-        (ns ohai.monads
-          (:require [bodol.monad :as monad]))
+        (ns clap.if.you.love.monads)
+
+        (defn reduce-state
+          "Evaluate a list of state monad values in sequence, using the
+           provided initial state."
+          [state mvs]
+          (reduce (fn [[value state] next]
+                    (next state))
+                  [nil state]
+                  mvs))
       </section>
 
       <section data-background="m/pinkies.jpg">
-        <h3>Lexical Scoping</h3>
-        <p class="fragment">A function's outer scope is the code around it, not where it's invoked from.</p>
+        <h3>Dynamic Scope</h3>
+        <p>When you invoke a function, pass it the scope at the point where it's called.</p>
+      </section>
+
+      <section data-background="m/pinkies.jpg">
+        <h3>Lexical Scope</h3>
+        <p>When you <em>define</em> a function, attach the scope at the point of definition.</p>
+        <p class="fragment">This makes a <em>closure</em>.</p>
       </section>
 
       <section data-background="m/pac-pie.jpg">
@@ -197,12 +208,20 @@ body { visibility: hidden; background: black; }
       </section>
 
       <section data-background="m/types.jpg" data-editor="text/x-clojure">
-        (ns ohai.type-inference
+        (ns tapl.destroyed.my.mind
           (:refer-clojure :exclude [==])
           (:require [clojure.core.logic :as l :refer [run fresh ==]]))
 
         ;; (ƒ succ
         ;;   a → (+ a 1))
+      </section>
+
+      <section data-background="m/types.jpg" data-editor="text/x-clojure">
+        (ns literally.hindley.milner
+          (:require [bodol.parser :as parser]
+                    [bodol.repl :as repl]
+                    [bodol.type.check :as check]))
+
       </section>
 
       <section data-background="m/pinkie-portal.jpg">

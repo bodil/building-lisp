@@ -233,7 +233,13 @@
   (doseq [type types]
     (println (to-string type state))))
 
+(defn result-str [[types state]]
+  (for [type types]
+    (to-string type state)))
 
+(defn check [ast]
+  (-> ast (type-check (fresh-state (bodol.scope/scope)))
+      result-str))
 
 
 #_(-> (parser/parse "1337")
