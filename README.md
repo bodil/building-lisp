@@ -21,7 +21,7 @@ To launch the REPL server, you'll need to install
 [https://github.com/technomancy/leiningen](Leiningen), then:
 
 ```sh
-$ cd repl-server/clojure
+$ cd repl-server
 $ lein run
 ```
 
@@ -39,16 +39,9 @@ Navigate through slides using `PgUp` and `PgDn`.
 
 Editor cheat sheet:
 
-* `Ctrl-S` evaluates the whole buffer.
-* `Ctrl-D` evaluates the top level expression at cursor point. (currently unimplemented)
-* `Ctrl-R` reloads the HTML document without evaluating the buffer.
+* `Ctrl-S` evaluates the buffer.
 * `Ctrl-,` toggles commenting of the current line or selection.
 * `Ctrl-'` selects the token at point.
-* `Ctrl-\` invokes autocomplete on the token at point.
-* `Ctrl-I` shows the inferred type of the token at point.
-* `Ctrl-Q` renames the variable at point.
-* `Alt-.` jumps to the definition of the token at point.
-* `Alt-,` jumps back.
 * `Ctrl-K` and `Ctrl-Y` kills to end of line and yanks from the kill buffer as in Most Holy Emacs.
 * `Ctrl-A` and `Ctrl-E` similarly moves cursor to start and end of line.
 * `Tab` will indent the current line to where it's supposed to be.

@@ -5,4 +5,4 @@
 .tern-port
 /build
 npm-debug.log
-/repl-server/clojure/target
+/repl-server/target
