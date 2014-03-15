@@ -5,6 +5,10 @@ Here is a slide deck for a talk I gave. Much code. Very ponies. Wow.
 
 Notes for code slides [are here](notes.clj).
 
+There is a video recording of the latest version of this talk
+available here:
+[https://skillsmatter.com/skillscasts/4484-build-your-own-lisp-for-great-justice](https://skillsmatter.com/skillscasts/4484-build-your-own-lisp-for-great-justice).
+
 Running
 -------
 
